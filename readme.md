@@ -64,3 +64,4 @@ make sudoku
 ./sudoku puzzle.pgm
 # or
 ./sudoku < puzzle.pgm
+```
