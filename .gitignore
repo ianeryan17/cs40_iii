@@ -1,0 +1,14 @@
+# C build artifacts
+*.o
+*.out
+a.out
+*.exe
+*.obj
+
+# Editor settings
+*.swp
+*.swo
+.DS_Store
+
+# Compilation logs
+*.log
