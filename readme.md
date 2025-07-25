@@ -65,3 +65,87 @@ make sudoku
 # or
 ./sudoku < puzzle.pgm
 ```
+
+### 🔁 Exit Codes
+
+| Code | Meaning        |
+|-------|----------------|
+| 0     | Valid Sudoku   |
+| 1     | Invalid Sudoku |
+
+---
+
+## 🧼 Unblack Edges (PBM Input)
+
+This program reads a **PBM bitmap image** (black/white pixels) and removes all contiguous black pixels connected to the edges. The output is a cleaned PBM printed to stdout.
+
+### 🧠 How It Works
+
+- Pixels on the image edge that are black (value `1`) initiate a **depth-first search**
+- All connected black pixels are set to white (`0`)
+- This effectively removes "ink bleeding" into the image from the edges
+
+### 🏗️ Data Structure Used
+
+- `Bit2_T` – A compact 2D structure for storing bits
+- Utilizes a stack (`Stack_T`) to manage DFS traversal
+
+### ▶️ Run
+
+```bash
+make unblackededges
+./unblackededges image.pbm > cleaned.pbm
+# or
+./unblackededges < image.pbm > cleaned.pbm
+```
+
+### 💡 Output
+
+A valid PBM file (format: `P1`) with black edge-connected regions removed.
+
+---
+
+## 🧪 Data Structure Tests
+
+Two client programs were provided and extended to validate the correctness of our 2D structures:
+
+### `useuarray2.c`
+
+- Tests dimensions, element access, and traversal for `UArray2_T`
+- Sets and checks corner values
+- Demonstrates **row-major** and **column-major** mapping
+
+### `usebit2.c`
+
+- Similar tests for `Bit2_T` including:
+  - Width/height assertions
+  - Get/put round-trips
+  - Row/column traversal
+
+These test drivers were essential for debugging and validating implementation assumptions.
+
+---
+
+## 🧠 What I Learned
+
+- How to represent 2D data structures efficiently in C using a flat array
+- How to process PGM and PBM image formats using `Pnmrdr`
+- How to use DFS with an explicit stack to manage connected component traversal
+- How to validate structured data using CREs and runtime assertions
+- How to build general-purpose, reusable abstractions in C
+- The benefits and applications of both **row-major** and **column-major** traversals
+
+---
+
+## 🏫 Course Info
+CS40 – Machine Structure and Assembly Language Programming, 
+Tufts University — Fall 2023  
+
+
+---
+
+## 📄 License & Academic Integrity
+
+This code was written as part of a university assignment and is shared for educational purposes.  
+If you are a student taking CS40, please **do not copy** this work—learn from it instead.
+
